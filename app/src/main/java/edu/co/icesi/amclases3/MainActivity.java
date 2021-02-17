@@ -41,6 +41,9 @@ public class MainActivity extends AppCompatActivity {
         contentFragment = ContentFragment.newInstance();
         configFragment = ConfigFragment.newInstance();
 
+        //Nexos
+        contentFragment.setObserver(homeFragment);
+
         //Configurar la barra superior
         toolbar.setTitleTextColor(Color.WHITE);
         setSupportActionBar(toolbar);
@@ -74,5 +77,14 @@ public class MainActivity extends AppCompatActivity {
         FragmentTransaction transaction = manager.beginTransaction();
         transaction.replace(R.id.container, fragment);
         transaction.commit();
+    }
+
+    public void changeBackgroundColor(String color) {
+        container.setBackgroundColor(Color.parseColor(color));
+    }
+
+    public void changeMainColor(String color) {
+        navigator.setBackgroundColor(Color.parseColor(color));
+        toolbar.setBackgroundColor(Color.parseColor(color));
     }
 }

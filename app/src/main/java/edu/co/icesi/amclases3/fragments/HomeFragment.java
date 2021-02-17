@@ -11,9 +11,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import edu.co.icesi.amclases3.R;
+import edu.co.icesi.amclases3.model.User;
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements ContentFragment.onUserEditListener{
 
+    //State
+    private User user;
+
+    //UI
     private ImageView profileImage;
     private TextView profileName, profileCareer;
     private TextView profileDescription;
@@ -21,6 +26,7 @@ public class HomeFragment extends Fragment {
 
     public HomeFragment() {
         // Required empty public constructor
+        user = new User();
     }
 
     public static HomeFragment newInstance() {
@@ -39,6 +45,27 @@ public class HomeFragment extends Fragment {
         profileCareer = root.findViewById(R.id.profileCareer);
         profileDescription = root.findViewById(R.id.profileDescription);
 
+        profileImage.setImageResource(user.getImage());
+        profileName.setText(user.getName());
+        profileCareer.setText(user.getCareer());
+        profileDescription.setText(user.getDescription());
+
+
         return root;
     }
+
+
+    @Override
+    public void onImage(int image) {
+        user.setImage(image);
+    }
+
+    @Override
+    public void onPersonalInfo(String name, String career, String description) {
+        user.setName(name);
+        user.setCareer(career);
+        user.setDescription(description);
+    }
+
+
 }

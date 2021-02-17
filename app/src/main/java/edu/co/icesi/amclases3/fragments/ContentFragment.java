@@ -20,6 +20,8 @@ public class ContentFragment extends Fragment implements View.OnClickListener{
     private ImageButton profilePhotoBtn1, profilePhotoBtn2, profilePhotoBtn3, profilePhotoBtn4;
     private Button editInfoBtn;
 
+    private onUserEditListener observer;
+
     public ContentFragment() {
         // Required empty public constructor
     }
@@ -60,15 +62,33 @@ public class ContentFragment extends Fragment implements View.OnClickListener{
         //La variable v que recibe este método es el view al que se le hace click
         switch (v.getId()){
             case R.id.profilePhotoBtn1:
+                observer.onImage(R.drawable.face1);
                 break;
             case R.id.profilePhotoBtn2:
+                observer.onImage(R.drawable.face2);
                 break;
             case R.id.profilePhotoBtn3:
+                observer.onImage(R.drawable.face3);
                 break;
             case R.id.profilePhotoBtn4:
+                observer.onImage(R.drawable.face4);
                 break;
             case R.id.editInfoBtn:
+                String nombre = nameET.getText().toString();
+                String career = careerET.getText().toString();
+                String descripcion = descriptionET.getText().toString();
+                observer.onPersonalInfo(nombre, career, descripcion);
                 break;
         }
     }
+
+    public void setObserver(onUserEditListener observer){
+        this.observer = observer;
+    }
+
+    public interface onUserEditListener{
+        void onImage(int image);
+        void onPersonalInfo(String name, String career, String description);
+    }
+
 }

@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
+import edu.co.icesi.amclases3.MainActivity;
 import edu.co.icesi.amclases3.R;
 
 public class ConfigFragment extends Fragment implements View.OnClickListener {
@@ -53,18 +54,26 @@ public class ConfigFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
+
+        MainActivity activity = (MainActivity) getActivity();
         switch (v.getId()){
             case R.id.mainColorBtn1:
+                activity.changeMainColor("#673AB7");
                 break;
             case R.id.mainColorBtn2:
+                activity.changeMainColor("#009688");
                 break;
             case R.id.mainColorBtn3:
+                activity.changeMainColor("#E91E63");
                 break;
             case R.id.backColorBtn1:
+                activity.changeBackgroundColor("#A0A0A0");
                 break;
             case R.id.backColorBtn2:
+                activity.changeBackgroundColor("#FFFFFF");
                 break;
             case R.id.backColorBtn3:
+                activity.changeBackgroundColor("#B1D6F4");
                 break;
         }
     }
